@@ -1,0 +1,2 @@
+#pragma code_page(65001)
+1 /* CREATEPROCESS_MANIFEST_RESOURCE_ID */ 24 /* RT_MANIFEST */ "S:/Development/simple/shack_assembler/out/build/x64-Debug/shack_assembler/CMakeFiles/shack_assembler.dir/embed.manifest"

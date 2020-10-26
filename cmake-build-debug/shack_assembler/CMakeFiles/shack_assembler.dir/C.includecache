@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/gabriel/source/shack_assembler/shack_assembler/src/general_types.h
+stddef.h
+-
+
+/home/gabriel/source/shack_assembler/shack_assembler/src/instruction.h
+stddef.h
+-
+
+/home/gabriel/source/shack_assembler/shack_assembler/src/source_parser.c
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+ctype.h
+-
+source_parser.h
+/home/gabriel/source/shack_assembler/shack_assembler/src/source_parser.h
+instruction.h
+/home/gabriel/source/shack_assembler/shack_assembler/src/instruction.h
+
+/home/gabriel/source/shack_assembler/shack_assembler/src/source_parser.h
+general_types.h
+/home/gabriel/source/shack_assembler/shack_assembler/src/general_types.h
+

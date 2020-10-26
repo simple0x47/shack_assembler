@@ -1,0 +1,5 @@
+S:/Development/simple/shack_assembler/out/build/x64-Debug/CMakeFiles/edit_cache.dir
+S:/Development/simple/shack_assembler/out/build/x64-Debug/CMakeFiles/rebuild_cache.dir
+S:/Development/simple/shack_assembler/out/build/x64-Debug/shack_assembler/CMakeFiles/shack_assembler.dir
+S:/Development/simple/shack_assembler/out/build/x64-Debug/shack_assembler/CMakeFiles/edit_cache.dir
+S:/Development/simple/shack_assembler/out/build/x64-Debug/shack_assembler/CMakeFiles/rebuild_cache.dir
