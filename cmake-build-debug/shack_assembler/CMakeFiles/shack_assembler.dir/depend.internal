@@ -6,6 +6,7 @@ shack_assembler/CMakeFiles/shack_assembler.dir/src/assembler.c.o
  /home/gabriel/source/shack_assembler/shack_assembler/src/assembler.h
  /home/gabriel/source/shack_assembler/shack_assembler/src/general_types.h
  /home/gabriel/source/shack_assembler/shack_assembler/src/source_parser.h
+ /home/gabriel/source/shack_assembler/shack_assembler/src/symbol_handler.h
 shack_assembler/CMakeFiles/shack_assembler.dir/src/general_types.c.o
  /home/gabriel/source/shack_assembler/shack_assembler/src/general_types.c
  /home/gabriel/source/shack_assembler/shack_assembler/src/general_types.h
@@ -19,3 +20,8 @@ shack_assembler/CMakeFiles/shack_assembler.dir/src/source_parser.c.o
  /home/gabriel/source/shack_assembler/shack_assembler/src/instruction.h
  /home/gabriel/source/shack_assembler/shack_assembler/src/source_parser.c
  /home/gabriel/source/shack_assembler/shack_assembler/src/source_parser.h
+shack_assembler/CMakeFiles/shack_assembler.dir/src/symbol_handler.c.o
+ /home/gabriel/source/shack_assembler/shack_assembler/src/general_types.h
+ /home/gabriel/source/shack_assembler/shack_assembler/src/instruction.h
+ /home/gabriel/source/shack_assembler/shack_assembler/src/symbol_handler.c
+ /home/gabriel/source/shack_assembler/shack_assembler/src/symbol_handler.h

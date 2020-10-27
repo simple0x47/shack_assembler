@@ -141,6 +141,46 @@ int has_item_array_list(t_array_list* array_list, void* item) {
 	return 0;
 }
 
+int contains_str_key_array_list(t_array_list* array_list, const char* key, size_t key_length) {
+    if (array_list == NULL) {
+        return -1;
+    }
+
+    if (array_list->type != MAP) {
+        return -1;
+    }
+
+    if (key == NULL) {
+        return -1;
+    }
+
+    if (key_length <= 0) {
+        return -1;
+    }
+
+    for (int i = 0; i < array_list->length; i++) {
+        t_map_entry* entry = *(array_list->item + i);
+
+        if (entry->key_length == key_length) {
+            char* entry_key = (char*)entry->key;
+
+            for (int j = 0; j < key_length; j++) {
+                if (key[j] == entry_key[j]) {
+                    /* Detect if this is the last character */
+                    if ((j + 1) == key_length) {
+                        return 1;
+                    }
+                }
+                else {
+                    break;
+                }
+            }
+        }
+    }
+
+    return 0;
+}
+
 int contains_key_array_list(t_array_list* array_list, void* key, size_t key_length) {
 	if (array_list == NULL) {
 		return -1;
@@ -225,6 +265,46 @@ size_t get_item_index_from_array_list(t_array_list* array_list, void* item) {
 	}
 
 	return -1;
+}
+
+void* get_value_with_str_key_from_array_list(t_array_list* array_list, const char* key, size_t key_length) {
+    if (array_list == NULL) {
+        return NULL;
+    }
+
+    if (array_list->type != MAP) {
+        return NULL;
+    }
+
+    if (key == NULL) {
+        return NULL;
+    }
+
+    if (key_length <= 0) {
+        return NULL;
+    }
+
+    for (int i = 0; i < array_list->length; i++) {
+        t_map_entry* entry = *(array_list->item + i);
+
+        if (entry->key_length == key_length) {
+            char* entry_key = (char*)entry->key;
+
+            for (int j = 0; j < key_length; j++) {
+                if (key[j] == entry_key[j]) {
+                    /* Detect if this is the last character */
+                    if ((j + 1) == key_length) {
+                        return entry->value;
+                    }
+                }
+                else {
+                    break;
+                }
+            }
+        }
+    }
+
+    return NULL;
 }
 
 void* get_value_with_key_from_array_list(t_array_list* array_list, void* key, size_t key_length) {

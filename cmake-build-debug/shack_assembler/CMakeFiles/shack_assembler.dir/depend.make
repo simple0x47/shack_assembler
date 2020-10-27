@@ -5,6 +5,7 @@ shack_assembler/CMakeFiles/shack_assembler.dir/src/assembler.c.o: ../shack_assem
 shack_assembler/CMakeFiles/shack_assembler.dir/src/assembler.c.o: ../shack_assembler/src/assembler.h
 shack_assembler/CMakeFiles/shack_assembler.dir/src/assembler.c.o: ../shack_assembler/src/general_types.h
 shack_assembler/CMakeFiles/shack_assembler.dir/src/assembler.c.o: ../shack_assembler/src/source_parser.h
+shack_assembler/CMakeFiles/shack_assembler.dir/src/assembler.c.o: ../shack_assembler/src/symbol_handler.h
 
 shack_assembler/CMakeFiles/shack_assembler.dir/src/general_types.c.o: ../shack_assembler/src/general_types.c
 shack_assembler/CMakeFiles/shack_assembler.dir/src/general_types.c.o: ../shack_assembler/src/general_types.h
@@ -18,4 +19,9 @@ shack_assembler/CMakeFiles/shack_assembler.dir/src/source_parser.c.o: ../shack_a
 shack_assembler/CMakeFiles/shack_assembler.dir/src/source_parser.c.o: ../shack_assembler/src/instruction.h
 shack_assembler/CMakeFiles/shack_assembler.dir/src/source_parser.c.o: ../shack_assembler/src/source_parser.c
 shack_assembler/CMakeFiles/shack_assembler.dir/src/source_parser.c.o: ../shack_assembler/src/source_parser.h
+
+shack_assembler/CMakeFiles/shack_assembler.dir/src/symbol_handler.c.o: ../shack_assembler/src/general_types.h
+shack_assembler/CMakeFiles/shack_assembler.dir/src/symbol_handler.c.o: ../shack_assembler/src/instruction.h
+shack_assembler/CMakeFiles/shack_assembler.dir/src/symbol_handler.c.o: ../shack_assembler/src/symbol_handler.c
+shack_assembler/CMakeFiles/shack_assembler.dir/src/symbol_handler.c.o: ../shack_assembler/src/symbol_handler.h
 

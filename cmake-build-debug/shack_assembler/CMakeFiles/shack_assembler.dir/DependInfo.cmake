@@ -9,6 +9,7 @@ set(CMAKE_DEPENDS_CHECK_C
   "/home/gabriel/source/shack_assembler/shack_assembler/src/instruction.c" "/home/gabriel/source/shack_assembler/cmake-build-debug/shack_assembler/CMakeFiles/shack_assembler.dir/src/instruction.c.o"
   "/home/gabriel/source/shack_assembler/shack_assembler/src/main.c" "/home/gabriel/source/shack_assembler/cmake-build-debug/shack_assembler/CMakeFiles/shack_assembler.dir/src/main.c.o"
   "/home/gabriel/source/shack_assembler/shack_assembler/src/source_parser.c" "/home/gabriel/source/shack_assembler/cmake-build-debug/shack_assembler/CMakeFiles/shack_assembler.dir/src/source_parser.c.o"
+  "/home/gabriel/source/shack_assembler/shack_assembler/src/symbol_handler.c" "/home/gabriel/source/shack_assembler/cmake-build-debug/shack_assembler/CMakeFiles/shack_assembler.dir/src/symbol_handler.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 

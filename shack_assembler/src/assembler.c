@@ -9,9 +9,9 @@
 #include "assembler.h"
 #include "general_types.h"
 #include "source_parser.h"
+#include "symbol_handler.h"
 
 int handle_source_file(int verbose_mode, const char* file_path);
-int dispose_commands_buffer(t_array_list* commands_buffer);
 
 int start_assembler(int verbose_mode, int file_count, char** file_names) {
     if (file_count <= 0) {
@@ -105,7 +105,14 @@ int handle_source_file(int verbose_mode, const char* file_path) {
         return -1;
     }
 
-    result = dispose_commands_buffer(commands_buffer);
+    result = sync_symbol_addresses(commands_buffer);
+
+    if (result < 0) {
+        dispose_array_list(commands_buffer);
+        return -1;
+    }
+
+    result = dispose_commands_from_buffer(commands_buffer);
 
     if (result < 0) {
         dispose_array_list(commands_buffer);

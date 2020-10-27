@@ -280,6 +280,33 @@ src/source_parser.c.s:
 	cd /home/gabriel/source/shack_assembler/cmake-build-debug && $(MAKE) $(MAKESILENT) -f shack_assembler/CMakeFiles/shack_assembler.dir/build.make shack_assembler/CMakeFiles/shack_assembler.dir/src/source_parser.c.s
 .PHONY : src/source_parser.c.s
 
+src/symbol_handler.o: src/symbol_handler.c.o
+
+.PHONY : src/symbol_handler.o
+
+# target to build an object file
+src/symbol_handler.c.o:
+	cd /home/gabriel/source/shack_assembler/cmake-build-debug && $(MAKE) $(MAKESILENT) -f shack_assembler/CMakeFiles/shack_assembler.dir/build.make shack_assembler/CMakeFiles/shack_assembler.dir/src/symbol_handler.c.o
+.PHONY : src/symbol_handler.c.o
+
+src/symbol_handler.i: src/symbol_handler.c.i
+
+.PHONY : src/symbol_handler.i
+
+# target to preprocess a source file
+src/symbol_handler.c.i:
+	cd /home/gabriel/source/shack_assembler/cmake-build-debug && $(MAKE) $(MAKESILENT) -f shack_assembler/CMakeFiles/shack_assembler.dir/build.make shack_assembler/CMakeFiles/shack_assembler.dir/src/symbol_handler.c.i
+.PHONY : src/symbol_handler.c.i
+
+src/symbol_handler.s: src/symbol_handler.c.s
+
+.PHONY : src/symbol_handler.s
+
+# target to generate assembly for a file
+src/symbol_handler.c.s:
+	cd /home/gabriel/source/shack_assembler/cmake-build-debug && $(MAKE) $(MAKESILENT) -f shack_assembler/CMakeFiles/shack_assembler.dir/build.make shack_assembler/CMakeFiles/shack_assembler.dir/src/symbol_handler.c.s
+.PHONY : src/symbol_handler.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -304,6 +331,9 @@ help:
 	@echo "... src/source_parser.o"
 	@echo "... src/source_parser.i"
 	@echo "... src/source_parser.s"
+	@echo "... src/symbol_handler.o"
+	@echo "... src/symbol_handler.i"
+	@echo "... src/symbol_handler.s"
 .PHONY : help
 
 

@@ -6,6 +6,24 @@
 
 #IncludeRegexTransform: 
 
+/home/gabriel/source/shack_assembler/shack_assembler/src/assembler.c
+stdio.h
+-
+string.h
+-
+dirent.h
+-
+assembler.h
+/home/gabriel/source/shack_assembler/shack_assembler/src/assembler.h
+general_types.h
+/home/gabriel/source/shack_assembler/shack_assembler/src/general_types.h
+source_parser.h
+/home/gabriel/source/shack_assembler/shack_assembler/src/source_parser.h
+symbol_handler.h
+/home/gabriel/source/shack_assembler/shack_assembler/src/symbol_handler.h
+
+/home/gabriel/source/shack_assembler/shack_assembler/src/assembler.h
+
 /home/gabriel/source/shack_assembler/shack_assembler/src/general_types.h
 stddef.h
 -
@@ -14,21 +32,21 @@ stddef.h
 stddef.h
 -
 
-/home/gabriel/source/shack_assembler/shack_assembler/src/source_parser.c
+/home/gabriel/source/shack_assembler/shack_assembler/src/source_parser.h
+general_types.h
+/home/gabriel/source/shack_assembler/shack_assembler/src/general_types.h
+
+/home/gabriel/source/shack_assembler/shack_assembler/src/symbol_handler.c
 stdio.h
--
-stdlib.h
--
-string.h
 -
 ctype.h
 -
-source_parser.h
-/home/gabriel/source/shack_assembler/shack_assembler/src/source_parser.h
+symbol_handler.h
+/home/gabriel/source/shack_assembler/shack_assembler/src/symbol_handler.h
 instruction.h
 /home/gabriel/source/shack_assembler/shack_assembler/src/instruction.h
 
-/home/gabriel/source/shack_assembler/shack_assembler/src/source_parser.h
+/home/gabriel/source/shack_assembler/shack_assembler/src/symbol_handler.h
 general_types.h
 /home/gabriel/source/shack_assembler/shack_assembler/src/general_types.h
 

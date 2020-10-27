@@ -4,6 +4,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/shack_assembler.dir/src/instruction.c.o"
   "CMakeFiles/shack_assembler.dir/src/main.c.o"
   "CMakeFiles/shack_assembler.dir/src/source_parser.c.o"
+  "CMakeFiles/shack_assembler.dir/src/symbol_handler.c.o"
   "shack_assembler"
   "shack_assembler.pdb"
 )

@@ -109,6 +109,12 @@
 		<Unit filename="/home/gabriel/source/shack_assembler/shack_assembler/src/source_parser.h">
 			<Option target="shack_assembler"/>
 		</Unit>
+		<Unit filename="/home/gabriel/source/shack_assembler/shack_assembler/src/symbol_handler.c">
+			<Option target="shack_assembler"/>
+		</Unit>
+		<Unit filename="/home/gabriel/source/shack_assembler/shack_assembler/src/symbol_handler.h">
+			<Option target="shack_assembler"/>
+		</Unit>
 		<Unit filename="/home/gabriel/source/shack_assembler/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
