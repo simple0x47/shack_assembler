@@ -36,6 +36,11 @@ int read_source_file(int verbose_mode, const char* file_path, t_array_list* comm
         return -1;
     }
 
+    if (commands_buffer->type != LIST) {
+        printf("Internal Error: 'commands_buffer' is not a list at 'read_source_file'.\n");
+        return -1;
+    }
+
     FILE* file = fopen(file_path, "r");
 
     if (file == NULL) {
@@ -406,4 +411,58 @@ t_instruction* retrieve_instruction_from_formatted_line(const char* formatted_li
     instruction->address = (type == A_COMMAND) ? 0L : line_count;
 
     return instruction;
+}
+
+int dispose_commands_from_buffer(t_array_list* commands_buffer) {
+    if (commands_buffer == NULL) {
+        printf("Internal Error: 'commands_buffer' is null at 'dispose_commands_from_buffer'.\n");
+        return -1;
+    }
+
+    if (commands_buffer->type != LIST) {
+        printf("Internal Error: 'commands_buffer' is not a list at 'dispose_commands_from_buffer'.\n");
+        return -1;
+    }
+
+    for (size_t i = 0; i < commands_buffer->length; i++) {
+        t_instruction* instruction = commands_buffer->item[i];
+
+        if (instruction == NULL) {
+            printf("Internal Error: 'commands_buffer' contains invalid data at 'dispose_commands_from_buffer'.\n");
+            return -1;
+        }
+
+        if ((instruction->type == A_COMMAND) || (instruction->type == L_COMMAND)) {
+            if (instruction->symbol == NULL) {
+                printf("Internal Error: 'commands_buffer' contains invalid data at 'dispose_commands_from_buffer'.\n");
+                return -1;
+            }
+
+            free(instruction->symbol);
+        }
+        else if (instruction->type == C_COMMAND) {
+            if (instruction->computation == NULL) {
+                printf("Internal Error: 'commands_buffer' contains invalid data at 'dispose_commands_from_buffer'.\n");
+                return -1;
+            }
+
+            free(instruction->computation);
+
+            if (instruction->destination != NULL) {
+                free(instruction->destination);
+            }
+
+            if (instruction->jump != NULL) {
+                free(instruction->jump);
+            }
+        }
+        else {
+            printf("Internal Error: 'commands_buffer' contains invalid data at 'dispose_commands_from_buffer'.\n");
+            return -1;
+        }
+
+        free(instruction);
+    }
+
+    return 1;
 }

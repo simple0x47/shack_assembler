@@ -11,6 +11,7 @@
 #include "source_parser.h"
 
 int handle_source_file(int verbose_mode, const char* file_path);
+int dispose_commands_buffer(t_array_list* commands_buffer);
 
 int start_assembler(int verbose_mode, int file_count, char** file_names) {
     if (file_count <= 0) {
@@ -99,7 +100,16 @@ int handle_source_file(int verbose_mode, const char* file_path) {
     result = read_source_file(verbose_mode, file_path, commands_buffer);
 
     if (result < 0) {
+        dispose_array_list(commands_buffer);
         printf("Internal Error: failed to read source file '%s' at 'handle_source_file'.\n", file_path);
+        return -1;
+    }
+
+    result = dispose_commands_buffer(commands_buffer);
+
+    if (result < 0) {
+        dispose_array_list(commands_buffer);
+        printf("Internal Error: failed to dispose content of commands buffer at 'handle_source_file'.\n");
         return -1;
     }
 

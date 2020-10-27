@@ -8,5 +8,6 @@
 #include "general_types.h"
 
 int read_source_file(int verbose_mode, const char* file_path, t_array_list* commands_buffer);
+int dispose_commands_from_buffer(t_array_list* commands_buffer);
 
 #endif //SHACK_ASSEMBLER_SOURCE_PARSER_H
