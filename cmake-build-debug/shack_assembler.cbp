@@ -88,6 +88,12 @@
 		<Unit filename="/home/gabriel/source/shack_assembler/shack_assembler/src/assembler.h">
 			<Option target="shack_assembler"/>
 		</Unit>
+		<Unit filename="/home/gabriel/source/shack_assembler/shack_assembler/src/code_exporter.c">
+			<Option target="shack_assembler"/>
+		</Unit>
+		<Unit filename="/home/gabriel/source/shack_assembler/shack_assembler/src/code_exporter.h">
+			<Option target="shack_assembler"/>
+		</Unit>
 		<Unit filename="/home/gabriel/source/shack_assembler/shack_assembler/src/command_transformer.c">
 			<Option target="shack_assembler"/>
 		</Unit>

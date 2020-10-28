@@ -83,7 +83,7 @@ unsigned int* translate_instructions_into_binary(const t_array_list* commands_bu
         }
     }
 
-    unsigned int* buffer = malloc(sizeof(unsigned int) * instruction_count);
+    unsigned int* buffer = malloc(sizeof(unsigned int) * (instruction_count + 1));
 
     if (buffer == NULL) {
         printf("Internal Error: could not allocate memory for 'buffer' at 'translate_instructions_into_binary'.\n");
@@ -234,6 +234,8 @@ unsigned int* translate_instructions_into_binary(const t_array_list* commands_bu
             j++;
         }
     }
+
+    buffer[instruction_count] = -1;
 
     return buffer;
 }

@@ -11,6 +11,7 @@
 #include "source_parser.h"
 #include "symbol_handler.h"
 #include "command_transformer.h"
+#include "code_exporter.h"
 
 int handle_source_file(int verbose_mode, const char* file_path);
 
@@ -120,7 +121,15 @@ int handle_source_file(int verbose_mode, const char* file_path) {
         return -1;
     }
 
-    
+    result = export_instructions_to_file(instructions_buffer, file_path);
+
+    if (result < 0) {
+        dispose_array_list(commands_buffer);
+        printf("Internal Error: failed to export code to an output file at 'handle_source_file'.\n");
+        return -1;
+    }
+
+    free(instructions_buffer);
 
     result = dispose_commands_from_buffer(commands_buffer);
 

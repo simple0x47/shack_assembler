@@ -6,29 +6,15 @@
 
 #IncludeRegexTransform: 
 
-/home/gabriel/source/shack_assembler/shack_assembler/src/command_transformer.c
+/home/gabriel/source/shack_assembler/shack_assembler/src/code_exporter.c
 stdio.h
--
-stdlib.h
 -
 string.h
 -
-ctype.h
--
-command_transformer.h
-/home/gabriel/source/shack_assembler/shack_assembler/src/command_transformer.h
-instruction.h
-/home/gabriel/source/shack_assembler/shack_assembler/src/instruction.h
+code_exporter.h
+/home/gabriel/source/shack_assembler/shack_assembler/src/code_exporter.h
 
-/home/gabriel/source/shack_assembler/shack_assembler/src/command_transformer.h
-general_types.h
-/home/gabriel/source/shack_assembler/shack_assembler/src/general_types.h
-
-/home/gabriel/source/shack_assembler/shack_assembler/src/general_types.h
-stddef.h
--
-
-/home/gabriel/source/shack_assembler/shack_assembler/src/instruction.h
-stddef.h
+/home/gabriel/source/shack_assembler/shack_assembler/src/code_exporter.h
+stdlib.h
 -
 

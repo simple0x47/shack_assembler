@@ -172,6 +172,33 @@ src/assembler.c.s:
 	cd /home/gabriel/source/shack_assembler/cmake-build-debug && $(MAKE) $(MAKESILENT) -f shack_assembler/CMakeFiles/shack_assembler.dir/build.make shack_assembler/CMakeFiles/shack_assembler.dir/src/assembler.c.s
 .PHONY : src/assembler.c.s
 
+src/code_exporter.o: src/code_exporter.c.o
+
+.PHONY : src/code_exporter.o
+
+# target to build an object file
+src/code_exporter.c.o:
+	cd /home/gabriel/source/shack_assembler/cmake-build-debug && $(MAKE) $(MAKESILENT) -f shack_assembler/CMakeFiles/shack_assembler.dir/build.make shack_assembler/CMakeFiles/shack_assembler.dir/src/code_exporter.c.o
+.PHONY : src/code_exporter.c.o
+
+src/code_exporter.i: src/code_exporter.c.i
+
+.PHONY : src/code_exporter.i
+
+# target to preprocess a source file
+src/code_exporter.c.i:
+	cd /home/gabriel/source/shack_assembler/cmake-build-debug && $(MAKE) $(MAKESILENT) -f shack_assembler/CMakeFiles/shack_assembler.dir/build.make shack_assembler/CMakeFiles/shack_assembler.dir/src/code_exporter.c.i
+.PHONY : src/code_exporter.c.i
+
+src/code_exporter.s: src/code_exporter.c.s
+
+.PHONY : src/code_exporter.s
+
+# target to generate assembly for a file
+src/code_exporter.c.s:
+	cd /home/gabriel/source/shack_assembler/cmake-build-debug && $(MAKE) $(MAKESILENT) -f shack_assembler/CMakeFiles/shack_assembler.dir/build.make shack_assembler/CMakeFiles/shack_assembler.dir/src/code_exporter.c.s
+.PHONY : src/code_exporter.c.s
+
 src/command_transformer.o: src/command_transformer.c.o
 
 .PHONY : src/command_transformer.o
@@ -346,6 +373,9 @@ help:
 	@echo "... src/assembler.o"
 	@echo "... src/assembler.i"
 	@echo "... src/assembler.s"
+	@echo "... src/code_exporter.o"
+	@echo "... src/code_exporter.i"
+	@echo "... src/code_exporter.s"
 	@echo "... src/command_transformer.o"
 	@echo "... src/command_transformer.i"
 	@echo "... src/command_transformer.s"

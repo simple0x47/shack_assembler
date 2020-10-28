@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/shack_assembler.dir/src/assembler.c.o"
+  "CMakeFiles/shack_assembler.dir/src/code_exporter.c.o"
   "CMakeFiles/shack_assembler.dir/src/command_transformer.c.o"
   "CMakeFiles/shack_assembler.dir/src/general_types.c.o"
   "CMakeFiles/shack_assembler.dir/src/instruction.c.o"

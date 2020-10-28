@@ -4,10 +4,14 @@
 shack_assembler/CMakeFiles/shack_assembler.dir/src/assembler.c.o
  /home/gabriel/source/shack_assembler/shack_assembler/src/assembler.c
  /home/gabriel/source/shack_assembler/shack_assembler/src/assembler.h
+ /home/gabriel/source/shack_assembler/shack_assembler/src/code_exporter.h
  /home/gabriel/source/shack_assembler/shack_assembler/src/command_transformer.h
  /home/gabriel/source/shack_assembler/shack_assembler/src/general_types.h
  /home/gabriel/source/shack_assembler/shack_assembler/src/source_parser.h
  /home/gabriel/source/shack_assembler/shack_assembler/src/symbol_handler.h
+shack_assembler/CMakeFiles/shack_assembler.dir/src/code_exporter.c.o
+ /home/gabriel/source/shack_assembler/shack_assembler/src/code_exporter.c
+ /home/gabriel/source/shack_assembler/shack_assembler/src/code_exporter.h
 shack_assembler/CMakeFiles/shack_assembler.dir/src/command_transformer.c.o
  /home/gabriel/source/shack_assembler/shack_assembler/src/command_transformer.c
  /home/gabriel/source/shack_assembler/shack_assembler/src/command_transformer.h

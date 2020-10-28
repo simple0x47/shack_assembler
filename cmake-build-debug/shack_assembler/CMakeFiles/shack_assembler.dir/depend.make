@@ -3,10 +3,14 @@
 
 shack_assembler/CMakeFiles/shack_assembler.dir/src/assembler.c.o: ../shack_assembler/src/assembler.c
 shack_assembler/CMakeFiles/shack_assembler.dir/src/assembler.c.o: ../shack_assembler/src/assembler.h
+shack_assembler/CMakeFiles/shack_assembler.dir/src/assembler.c.o: ../shack_assembler/src/code_exporter.h
 shack_assembler/CMakeFiles/shack_assembler.dir/src/assembler.c.o: ../shack_assembler/src/command_transformer.h
 shack_assembler/CMakeFiles/shack_assembler.dir/src/assembler.c.o: ../shack_assembler/src/general_types.h
 shack_assembler/CMakeFiles/shack_assembler.dir/src/assembler.c.o: ../shack_assembler/src/source_parser.h
 shack_assembler/CMakeFiles/shack_assembler.dir/src/assembler.c.o: ../shack_assembler/src/symbol_handler.h
+
+shack_assembler/CMakeFiles/shack_assembler.dir/src/code_exporter.c.o: ../shack_assembler/src/code_exporter.c
+shack_assembler/CMakeFiles/shack_assembler.dir/src/code_exporter.c.o: ../shack_assembler/src/code_exporter.h
 
 shack_assembler/CMakeFiles/shack_assembler.dir/src/command_transformer.c.o: ../shack_assembler/src/command_transformer.c
 shack_assembler/CMakeFiles/shack_assembler.dir/src/command_transformer.c.o: ../shack_assembler/src/command_transformer.h
