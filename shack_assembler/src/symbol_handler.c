@@ -31,6 +31,8 @@
 #define KEYBOARD_SYMBOL "KBD"
 #define KEYBOARD_VALUE 0b0110000000000000
 
+void dispose_array_of_strings(char** buffer, size_t length);
+
 int sync_symbol_addresses(t_array_list* commands_buffer) {
     if (commands_buffer == NULL) {
         printf("Internal Error: null 'commands_buffer' at 'sync_symbol_addresses'.\n");
@@ -92,6 +94,7 @@ int sync_symbol_addresses(t_array_list* commands_buffer) {
 
         if (RAM_SYMBOLS[i] == NULL) {
             dispose_array_list(symbol_table);
+            dispose_array_of_strings(RAM_SYMBOLS, RAM_SYMBOLS_COUNT);
             free(RAM_SYMBOLS);
             printf("Internal Error: failed to allocate memory for RAM_SYMBOLS[%d] at 'translate_instructions_into_binary'.\n", i);
             return -1;
@@ -110,6 +113,7 @@ int sync_symbol_addresses(t_array_list* commands_buffer) {
 
         if (instruction == NULL) {
             dispose_array_list(symbol_table);
+            dispose_array_of_strings(RAM_SYMBOLS, RAM_SYMBOLS_COUNT);
             free(RAM_SYMBOLS);
             printf("Internal Error: 'commands_buffer' contains invalid data at 'sync_symbol_addresses'.\n");
             return -1;
@@ -118,6 +122,7 @@ int sync_symbol_addresses(t_array_list* commands_buffer) {
         if (instruction->type == L_COMMAND) {
             if (instruction->symbol == NULL) {
                 dispose_array_list(symbol_table);
+                dispose_array_of_strings(RAM_SYMBOLS, RAM_SYMBOLS_COUNT);
                 free(RAM_SYMBOLS);
                 printf("Internal Error: 'commands_buffer' contains invalid data at 'sync_symbol_addresses'.\n");
                 return -1;
@@ -125,6 +130,7 @@ int sync_symbol_addresses(t_array_list* commands_buffer) {
 
             if (contains_str_key_array_list(symbol_table, instruction->symbol, instruction->symbol_length) > 0) {
                 dispose_array_list(symbol_table);
+                dispose_array_of_strings(RAM_SYMBOLS, RAM_SYMBOLS_COUNT);
                 free(RAM_SYMBOLS);
                 printf("Error: detected a repeated symbol definition of label '%s'.\n", instruction->symbol);
                 return -1;
@@ -140,6 +146,7 @@ int sync_symbol_addresses(t_array_list* commands_buffer) {
 
         if (instruction == NULL) {
             dispose_array_list(symbol_table);
+            dispose_array_of_strings(RAM_SYMBOLS, RAM_SYMBOLS_COUNT);
             free(RAM_SYMBOLS);
             printf("Internal Error: 'commands_buffer' contains invalid data at 'sync_symbol_addresses'.\n");
             return -1;
@@ -148,6 +155,7 @@ int sync_symbol_addresses(t_array_list* commands_buffer) {
         if (instruction->type == A_COMMAND) {
             if (instruction->symbol == NULL) {
                 dispose_array_list(symbol_table);
+                dispose_array_of_strings(RAM_SYMBOLS, RAM_SYMBOLS_COUNT);
                 free(RAM_SYMBOLS);
                 printf("Internal Error: 'commands_buffer' contains invalid data at 'sync_symbol_addresses'.\n");
                 return -1;
@@ -165,6 +173,7 @@ int sync_symbol_addresses(t_array_list* commands_buffer) {
 
                     if (label_address == NULL) {
                         dispose_array_list(symbol_table);
+                        dispose_array_of_strings(RAM_SYMBOLS, RAM_SYMBOLS_COUNT);
                         free(RAM_SYMBOLS);
                         printf("Internal Error: failed to retrieve a label's address at 'sync_symbol_addresses'.\n");
                         return -1;
@@ -179,6 +188,17 @@ int sync_symbol_addresses(t_array_list* commands_buffer) {
     }
 
     dispose_array_list(symbol_table);
+    dispose_array_of_strings(RAM_SYMBOLS, RAM_SYMBOLS_COUNT);
     free(RAM_SYMBOLS);
     return 1;
+}
+
+void dispose_array_of_strings(char** buffer, size_t length) {
+    if (buffer != NULL) {
+        for (size_t i = 0; i < length; i++) {
+            if (buffer[i] != NULL) {
+                free(buffer[i]);
+            }
+        }
+    }
 }
