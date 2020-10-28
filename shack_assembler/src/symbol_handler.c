@@ -96,7 +96,7 @@ int sync_symbol_addresses(t_array_list* commands_buffer) {
             dispose_array_list(symbol_table);
             dispose_array_of_strings(RAM_SYMBOLS, RAM_SYMBOLS_COUNT);
             free(RAM_SYMBOLS);
-            printf("Internal Error: failed to allocate memory for RAM_SYMBOLS[%d] at 'translate_instructions_into_binary'.\n", i);
+            printf("Internal Error: failed to allocate memory for RAM_SYMBOLS[%lu] at 'translate_instructions_into_binary'.\n", i);
             return -1;
         }
 
@@ -180,8 +180,6 @@ int sync_symbol_addresses(t_array_list* commands_buffer) {
                     }
 
                     instruction->address = *(label_address);
-                    printf("");
-                    int x = 100;
                 }
             }
         }

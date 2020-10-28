@@ -132,7 +132,7 @@ unsigned int* translate_instructions_into_binary(const t_array_list* commands_bu
                 instruction += NOT_BITWISE_D_REGISTER;
             }
             else if ((strcmp(computation, "!A") == 0) || (strcmp(computation, "!M") == 0)) {
-                instruction += NOT_BITWISE_A_REGISTER;
+                instruction = instruction + NOT_BITWISE_A_REGISTER; // clang tidy, freaks out if += in here...
             }
             else if (strcmp(computation, "-D") == 0) {
                 instruction += NEGATIVE_D_REGISTER;
