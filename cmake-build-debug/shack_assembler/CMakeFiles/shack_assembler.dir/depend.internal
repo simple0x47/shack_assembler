@@ -25,6 +25,9 @@ shack_assembler/CMakeFiles/shack_assembler.dir/src/instruction.c.o
 shack_assembler/CMakeFiles/shack_assembler.dir/src/main.c.o
  /home/gabriel/source/shack_assembler/shack_assembler/src/assembler.h
  /home/gabriel/source/shack_assembler/shack_assembler/src/main.c
+shack_assembler/CMakeFiles/shack_assembler.dir/src/main_test.c.o
+ /home/gabriel/source/shack_assembler/shack_assembler/src/general_types.h
+ /home/gabriel/source/shack_assembler/shack_assembler/src/main_test.c
 shack_assembler/CMakeFiles/shack_assembler.dir/src/source_parser.c.o
  /home/gabriel/source/shack_assembler/shack_assembler/src/general_types.h
  /home/gabriel/source/shack_assembler/shack_assembler/src/instruction.h

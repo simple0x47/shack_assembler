@@ -307,6 +307,33 @@ src/main.c.s:
 	cd /home/gabriel/source/shack_assembler/cmake-build-debug && $(MAKE) $(MAKESILENT) -f shack_assembler/CMakeFiles/shack_assembler.dir/build.make shack_assembler/CMakeFiles/shack_assembler.dir/src/main.c.s
 .PHONY : src/main.c.s
 
+src/main_test.o: src/main_test.c.o
+
+.PHONY : src/main_test.o
+
+# target to build an object file
+src/main_test.c.o:
+	cd /home/gabriel/source/shack_assembler/cmake-build-debug && $(MAKE) $(MAKESILENT) -f shack_assembler/CMakeFiles/shack_assembler.dir/build.make shack_assembler/CMakeFiles/shack_assembler.dir/src/main_test.c.o
+.PHONY : src/main_test.c.o
+
+src/main_test.i: src/main_test.c.i
+
+.PHONY : src/main_test.i
+
+# target to preprocess a source file
+src/main_test.c.i:
+	cd /home/gabriel/source/shack_assembler/cmake-build-debug && $(MAKE) $(MAKESILENT) -f shack_assembler/CMakeFiles/shack_assembler.dir/build.make shack_assembler/CMakeFiles/shack_assembler.dir/src/main_test.c.i
+.PHONY : src/main_test.c.i
+
+src/main_test.s: src/main_test.c.s
+
+.PHONY : src/main_test.s
+
+# target to generate assembly for a file
+src/main_test.c.s:
+	cd /home/gabriel/source/shack_assembler/cmake-build-debug && $(MAKE) $(MAKESILENT) -f shack_assembler/CMakeFiles/shack_assembler.dir/build.make shack_assembler/CMakeFiles/shack_assembler.dir/src/main_test.c.s
+.PHONY : src/main_test.c.s
+
 src/source_parser.o: src/source_parser.c.o
 
 .PHONY : src/source_parser.o
@@ -388,6 +415,9 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/main_test.o"
+	@echo "... src/main_test.i"
+	@echo "... src/main_test.s"
 	@echo "... src/source_parser.o"
 	@echo "... src/source_parser.i"
 	@echo "... src/source_parser.s"

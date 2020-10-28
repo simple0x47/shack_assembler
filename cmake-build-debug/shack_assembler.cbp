@@ -115,6 +115,9 @@
 		<Unit filename="/home/gabriel/source/shack_assembler/shack_assembler/src/main.c">
 			<Option target="shack_assembler"/>
 		</Unit>
+		<Unit filename="/home/gabriel/source/shack_assembler/shack_assembler/src/main_test.c">
+			<Option target="shack_assembler"/>
+		</Unit>
 		<Unit filename="/home/gabriel/source/shack_assembler/shack_assembler/src/source_parser.c">
 			<Option target="shack_assembler"/>
 		</Unit>

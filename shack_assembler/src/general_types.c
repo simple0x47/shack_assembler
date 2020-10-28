@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <stdlib.h>
 
 #include "general_types.h"
@@ -51,14 +52,15 @@ int increment_array_list_capacity(t_array_list* array_list) {
 	}
 
 	size_t new_capacity = (array_list->capacity) + (array_list->increase_step);
-	
 	void** new_item_buffer = realloc(array_list->item, sizeof(void*) * new_capacity);
 
 	if (new_item_buffer == NULL) {
+	    printf("Failed\n");
 		return -1;
 	}
 
 	array_list->item = new_item_buffer;
+	array_list->capacity = new_capacity;
 
 	return 1;
 }
@@ -76,7 +78,7 @@ int add_item_to_array_list(t_array_list* array_list, void* item) {
 		return -1;
 	}
 
-	if ((array_list->capacity) == (array_list->length)) {
+	if ((array_list->capacity) <= (array_list->length)) {
 		if (increment_array_list_capacity(array_list) < 0) {
 			return -1;
 		}
@@ -132,10 +134,10 @@ int has_item_array_list(t_array_list* array_list, void* item) {
 		return -1;
 	}
 
-	for (size_t i = 0; i < array_list->length; i++) {
-		if (item == *(array_list->item + i)) {
-			return 1;
-		}
+	for (size_t i = 0; i < (array_list->length); i++) {
+        if (item == (array_list->item[i])) {
+            return 1;
+        }
 	}
 
 	return 0;

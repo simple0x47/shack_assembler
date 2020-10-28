@@ -13,6 +13,7 @@
 
 #define RAM_SYMBOL_MAX_CHARACTERS 4
 #define RAM_SYMBOLS_COUNT 16
+#define VARIABLE_START_ADDRESS 16
 
 /* PREDEFINED SYMBOLS */
 
@@ -32,6 +33,7 @@
 #define KEYBOARD_VALUE 0b0110000000000000
 
 void dispose_array_of_strings(char** buffer, size_t length);
+void dispose_ram_addresses(t_array_list* symbol_table, char** ram_symbols);
 
 int sync_symbol_addresses(t_array_list* commands_buffer) {
     if (commands_buffer == NULL) {
@@ -100,10 +102,19 @@ int sync_symbol_addresses(t_array_list* commands_buffer) {
             return -1;
         }
 
+        size_t* ram_address = malloc(sizeof(size_t));
+
+        if (ram_address == NULL) {
+            printf("Internal Error: failed to allocate memory for 'ram_address' at 'translate_instructions_into_binary'.\n");
+            return -1;
+        }
+
+        *(ram_address) = i;
+
         sprintf(RAM_SYMBOLS[i], "%c%lu", RAM_START_SYMBOL, i);
 
         add_entry_to_array_list(symbol_table, RAM_SYMBOLS[i], strlen(RAM_SYMBOLS[i]),
-                                &i, 1);
+                                ram_address, 1);
     }
 
     const int ADDRESS_POINTER_LENGTH = 1;
@@ -112,6 +123,7 @@ int sync_symbol_addresses(t_array_list* commands_buffer) {
         t_instruction* instruction = commands_buffer->item[i];
 
         if (instruction == NULL) {
+            dispose_ram_addresses(symbol_table, RAM_SYMBOLS);
             dispose_array_list(symbol_table);
             dispose_array_of_strings(RAM_SYMBOLS, RAM_SYMBOLS_COUNT);
             free(RAM_SYMBOLS);
@@ -129,6 +141,7 @@ int sync_symbol_addresses(t_array_list* commands_buffer) {
             }
 
             if (contains_str_key_array_list(symbol_table, instruction->symbol, instruction->symbol_length) > 0) {
+                dispose_ram_addresses(symbol_table, RAM_SYMBOLS);
                 dispose_array_list(symbol_table);
                 dispose_array_of_strings(RAM_SYMBOLS, RAM_SYMBOLS_COUNT);
                 free(RAM_SYMBOLS);
@@ -141,10 +154,13 @@ int sync_symbol_addresses(t_array_list* commands_buffer) {
         }
     }
 
+    size_t variable_address = VARIABLE_START_ADDRESS;
+
     for (size_t i = 0; i < commands_buffer->length; i++) {
         t_instruction* instruction = commands_buffer->item[i];
 
         if (instruction == NULL) {
+            dispose_ram_addresses(symbol_table, RAM_SYMBOLS);
             dispose_array_list(symbol_table);
             dispose_array_of_strings(RAM_SYMBOLS, RAM_SYMBOLS_COUNT);
             free(RAM_SYMBOLS);
@@ -154,6 +170,7 @@ int sync_symbol_addresses(t_array_list* commands_buffer) {
 
         if (instruction->type == A_COMMAND) {
             if (instruction->symbol == NULL) {
+                dispose_ram_addresses(symbol_table, RAM_SYMBOLS);
                 dispose_array_list(symbol_table);
                 dispose_array_of_strings(RAM_SYMBOLS, RAM_SYMBOLS_COUNT);
                 free(RAM_SYMBOLS);
@@ -172,6 +189,7 @@ int sync_symbol_addresses(t_array_list* commands_buffer) {
                                                                                    instruction->symbol_length);
 
                     if (label_address == NULL) {
+                        dispose_ram_addresses(symbol_table, RAM_SYMBOLS);
                         dispose_array_list(symbol_table);
                         dispose_array_of_strings(RAM_SYMBOLS, RAM_SYMBOLS_COUNT);
                         free(RAM_SYMBOLS);
@@ -180,6 +198,13 @@ int sync_symbol_addresses(t_array_list* commands_buffer) {
                     }
 
                     instruction->address = *(label_address);
+                }
+                else if (result == 0) {
+                    instruction->address = variable_address;
+
+                    add_entry_to_array_list(symbol_table, instruction->symbol, instruction->symbol_length,
+                                            &instruction->address, 1);
+                    variable_address++;
                 }
             }
         }
@@ -196,6 +221,19 @@ void dispose_array_of_strings(char** buffer, size_t length) {
         for (size_t i = 0; i < length; i++) {
             if (buffer[i] != NULL) {
                 free(buffer[i]);
+            }
+        }
+    }
+}
+
+void dispose_ram_addresses(t_array_list* symbol_table, char** ram_symbols) {
+    if ((symbol_table != NULL) && (ram_symbols != NULL)) {
+        for (size_t i = 0; i < RAM_SYMBOLS_COUNT; i++) {
+            void* address = get_value_with_str_key_from_array_list(symbol_table, ram_symbols[i],
+                                                                   strlen(ram_symbols[i]));
+
+            if (address != NULL) {
+                free(address);
             }
         }
     }

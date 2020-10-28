@@ -16,13 +16,14 @@
 #define SUBTRACTION_INSTRUCTION '-'
 #define AND_BITWISE_INSTRUCTION '&'
 #define OR_BITWISE_INSTRUCTION '|'
+#define NOT_BITWISE '!'
 
 #define AT_OPERATOR '@'
 #define JUMP_OPERATOR_START '('
 #define JUMP_OPERATOR_END ')'
 
 int contains_line_any_code(const char* line, size_t line_count);
-char* format_code_line(const char* line, size_t line_count);
+int format_code_line(char* formatted_line, const char* line, size_t line_count);
 t_instruction* retrieve_instruction_from_formatted_line(const char* formatted_line, size_t line_count);
 
 int read_source_file(int verbose_mode, const char* file_path, t_array_list* commands_buffer) {
@@ -58,15 +59,27 @@ int read_source_file(int verbose_mode, const char* file_path, t_array_list* comm
         return -1;
     }
 
+    char* formatted_line = malloc(sizeof(int) * MAX_CHARACTERS_PER_LINE);
+
+    if (formatted_line == NULL) {
+        free(line);
+        fclose(file);
+        printf("Internal Error: failed to allocate memory for 'formatted_line' at 'read_source_file.\n");
+        return -1;
+    }
+
     size_t line_count = 0;
     while (fgets(line, MAX_CHARACTERS_PER_LINE, file)) {
         int result = contains_line_any_code(line, line_count);
 
         if (result > 0) {
-            char* formatted_line = format_code_line(line, line_count);
+            result = format_code_line(formatted_line, line, line_count);
 
-            if (formatted_line == NULL) {
-                free(line);
+            if (result < 0) {
+                free(formatted_line);
+                if (formatted_line != line) {
+                    free(line);
+                }
                 fclose(file);
                 return -1;
             }
@@ -78,7 +91,9 @@ int read_source_file(int verbose_mode, const char* file_path, t_array_list* comm
             t_instruction* instruction = retrieve_instruction_from_formatted_line(formatted_line, line_count);
 
             if (instruction == NULL) {
-                free(formatted_line);
+                if (formatted_line != line) {
+                    free(formatted_line);
+                }
                 free(line);
                 fclose(file);
                 printf("Internal Error: failed to retrieve instruction from formatted line at 'read_source_file'.\n");
@@ -89,7 +104,9 @@ int read_source_file(int verbose_mode, const char* file_path, t_array_list* comm
 
             if (result < 0) {
                 free(instruction);
-                free(formatted_line);
+                if (formatted_line != line) {
+                    free(formatted_line);
+                }
                 free(line);
                 fclose(file);
                 printf("Internal Error: failed to store instruction at 'read_source_file'.\n");
@@ -100,19 +117,23 @@ int read_source_file(int verbose_mode, const char* file_path, t_array_list* comm
                 printf("Successfully stored instruction: %s\n", formatted_line);
             }
 
-            free(formatted_line);
-
             if (instruction->type != L_COMMAND) {
                 line_count++;
             }
         }
         else if (result < 0) {
+            if (formatted_line != line) {
+                free(formatted_line);
+            }
             free(line);
             fclose(file);
             return -1;
         }
     }
 
+    if (formatted_line != line) {
+        free(formatted_line);
+    }
     free(line);
     fclose(file);
 
@@ -131,6 +152,7 @@ int is_character_legal(char character) {
         case SUBTRACTION_INSTRUCTION:
         case AND_BITWISE_INSTRUCTION:
         case OR_BITWISE_INSTRUCTION:
+        case NOT_BITWISE:
         case AT_OPERATOR:
         case JUMP_OPERATOR_START:
         case JUMP_OPERATOR_END:
@@ -184,17 +206,22 @@ int contains_line_any_code(const char* line, size_t line_count) {
     return 0;
 }
 
-char* format_code_line(const char* line, size_t line_count) {
+int format_code_line(char* formatted_line, const char* line, size_t line_count) {
+    if (formatted_line == NULL) {
+        printf("Internal Error: 'formatted_line' is null at 'format_code_line'.\n");
+        return -1;
+    }
+
     if (line == NULL) {
         printf("Internal Error: 'line' is null at 'format_code_line'.\n");
-        return NULL;
+        return -1;
     }
 
     const size_t line_length = strlen(line);
 
     if (line_length == 0L) {
         printf("Internal Error: 'line' is empty.\n");
-        return NULL;
+        return -1;
     }
 
     size_t formatted_line_length = 0L;
@@ -209,7 +236,7 @@ char* format_code_line(const char* line, size_t line_count) {
                     }
                     else {
                         printf("Error: invalid '/' symbol detected at line '%lu'.\n", line_count);
-                        return NULL;
+                        return -1;
                     }
                 }
             }
@@ -218,16 +245,9 @@ char* format_code_line(const char* line, size_t line_count) {
             }
             else {
                 printf("Error: invalid '%c' symbol detected at line '%lu'.\n", character, line_count);
-                return NULL;
+                return -1;
             }
         }
-    }
-
-    char* formatted_line = malloc(sizeof(char) * (formatted_line_length + 1));
-
-    if (formatted_line == NULL) {
-        printf("Internal Error: failed to allocate memory for 'formatted_line' at 'format_code_line'.\n");
-        return NULL;
     }
 
     for (size_t i = 0, formatted_line_index = 0; (i < line_length) && (formatted_line_index < formatted_line_length); i++) {
@@ -241,7 +261,7 @@ char* format_code_line(const char* line, size_t line_count) {
                     }
                     else {
                         printf("Error: invalid '/' symbol detected at line '%lu'.\n", line_count);
-                        return NULL;
+                        return -1;
                     }
                 }
             }
@@ -251,14 +271,14 @@ char* format_code_line(const char* line, size_t line_count) {
             }
             else {
                 printf("Error: invalid '%c' symbol detected at line '%lu'.\n", character, line_count);
-                return NULL;
+                return -1;
             }
         }
     }
 
     formatted_line[formatted_line_length] = '\0';
 
-    return formatted_line;
+    return 1;
 }
 
 t_instruction* retrieve_instruction_from_formatted_line(const char* formatted_line, size_t line_count) {
