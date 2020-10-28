@@ -172,6 +172,33 @@ src/assembler.c.s:
 	cd /home/gabriel/source/shack_assembler/cmake-build-debug && $(MAKE) $(MAKESILENT) -f shack_assembler/CMakeFiles/shack_assembler.dir/build.make shack_assembler/CMakeFiles/shack_assembler.dir/src/assembler.c.s
 .PHONY : src/assembler.c.s
 
+src/command_transformer.o: src/command_transformer.c.o
+
+.PHONY : src/command_transformer.o
+
+# target to build an object file
+src/command_transformer.c.o:
+	cd /home/gabriel/source/shack_assembler/cmake-build-debug && $(MAKE) $(MAKESILENT) -f shack_assembler/CMakeFiles/shack_assembler.dir/build.make shack_assembler/CMakeFiles/shack_assembler.dir/src/command_transformer.c.o
+.PHONY : src/command_transformer.c.o
+
+src/command_transformer.i: src/command_transformer.c.i
+
+.PHONY : src/command_transformer.i
+
+# target to preprocess a source file
+src/command_transformer.c.i:
+	cd /home/gabriel/source/shack_assembler/cmake-build-debug && $(MAKE) $(MAKESILENT) -f shack_assembler/CMakeFiles/shack_assembler.dir/build.make shack_assembler/CMakeFiles/shack_assembler.dir/src/command_transformer.c.i
+.PHONY : src/command_transformer.c.i
+
+src/command_transformer.s: src/command_transformer.c.s
+
+.PHONY : src/command_transformer.s
+
+# target to generate assembly for a file
+src/command_transformer.c.s:
+	cd /home/gabriel/source/shack_assembler/cmake-build-debug && $(MAKE) $(MAKESILENT) -f shack_assembler/CMakeFiles/shack_assembler.dir/build.make shack_assembler/CMakeFiles/shack_assembler.dir/src/command_transformer.c.s
+.PHONY : src/command_transformer.c.s
+
 src/general_types.o: src/general_types.c.o
 
 .PHONY : src/general_types.o
@@ -319,6 +346,9 @@ help:
 	@echo "... src/assembler.o"
 	@echo "... src/assembler.i"
 	@echo "... src/assembler.s"
+	@echo "... src/command_transformer.o"
+	@echo "... src/command_transformer.i"
+	@echo "... src/command_transformer.s"
 	@echo "... src/general_types.o"
 	@echo "... src/general_types.i"
 	@echo "... src/general_types.s"

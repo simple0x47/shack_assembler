@@ -10,6 +10,7 @@
 #include "general_types.h"
 #include "source_parser.h"
 #include "symbol_handler.h"
+#include "command_transformer.h"
 
 int handle_source_file(int verbose_mode, const char* file_path);
 
@@ -111,6 +112,15 @@ int handle_source_file(int verbose_mode, const char* file_path) {
         dispose_array_list(commands_buffer);
         return -1;
     }
+
+    unsigned int* instructions_buffer = translate_instructions_into_binary(commands_buffer);
+
+    if (instructions_buffer == NULL) {
+        dispose_array_list(commands_buffer);
+        return -1;
+    }
+
+    
 
     result = dispose_commands_from_buffer(commands_buffer);
 

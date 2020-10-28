@@ -4,10 +4,32 @@
 //
 
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <ctype.h>
 
 #include "symbol_handler.h"
 #include "instruction.h"
+
+#define RAM_SYMBOL_MAX_CHARACTERS 4
+#define RAM_SYMBOLS_COUNT 16
+
+/* PREDEFINED SYMBOLS */
+
+#define SP_SYMBOL "SP"
+#define SP_ADDRESS 0b0
+#define LCL_SYMBOL "LCL"
+#define LCL_ADDRESS 0b1
+#define ARG_SYMBOL "ARG"
+#define ARG_VALUE 0b10
+#define THIS_SYMBOL "THIS"
+#define THIS_VALUE 0b11
+#define THAT_SYMBOL "THAT"
+#define THAT_VALUE 0b100
+#define SCREEN_SYMBOL "SCREEN"
+#define SCREEN_VALUE 0b0100000000000000
+#define KEYBOARD_SYMBOL "KBD"
+#define KEYBOARD_VALUE 0b0110000000000000
 
 int sync_symbol_addresses(t_array_list* commands_buffer) {
     if (commands_buffer == NULL) {
@@ -29,6 +51,58 @@ int sync_symbol_addresses(t_array_list* commands_buffer) {
         return -1;
     }
 
+    size_t sp_address = SP_ADDRESS;
+    add_entry_to_array_list(symbol_table, SP_SYMBOL, strlen(SP_SYMBOL),
+                            &sp_address, 1);
+
+    size_t lcl_address = LCL_ADDRESS;
+    add_entry_to_array_list(symbol_table, LCL_SYMBOL, strlen(LCL_SYMBOL),
+                            &lcl_address, 1);
+
+    size_t arg_address = ARG_VALUE;
+    add_entry_to_array_list(symbol_table, ARG_SYMBOL, strlen(ARG_SYMBOL),
+                            &arg_address, 1);
+
+    size_t this_address = THIS_VALUE;
+    add_entry_to_array_list(symbol_table, THIS_SYMBOL, strlen(THIS_SYMBOL),
+                            &this_address, 1);
+
+    size_t that_address = THAT_VALUE;
+    add_entry_to_array_list(symbol_table, THAT_SYMBOL, strlen(THAT_SYMBOL),
+                            &that_address, 1);
+
+    size_t screen_address = SCREEN_VALUE;
+    add_entry_to_array_list(symbol_table, SCREEN_SYMBOL, strlen(SCREEN_SYMBOL),
+                            &screen_address, 1);
+
+    size_t keyboard_address = KEYBOARD_VALUE;
+    add_entry_to_array_list(symbol_table, KEYBOARD_SYMBOL, strlen(KEYBOARD_SYMBOL),
+                            &keyboard_address, 1);
+
+    const char RAM_START_SYMBOL = 'R';
+    char** RAM_SYMBOLS = malloc(sizeof(char*) * RAM_SYMBOLS_COUNT);
+
+    if (RAM_SYMBOLS == NULL) {
+        printf("Internal Error: failed to allocate memory for 'RAM_SYMBOLS' at 'translate_instructions_into_binary'.\n");
+        return -1;
+    }
+
+    for (size_t i = 0; i < RAM_SYMBOLS_COUNT; i++) {
+        RAM_SYMBOLS[i] = malloc(sizeof(char) * RAM_SYMBOL_MAX_CHARACTERS * RAM_SYMBOLS_COUNT);
+
+        if (RAM_SYMBOLS[i] == NULL) {
+            dispose_array_list(symbol_table);
+            free(RAM_SYMBOLS);
+            printf("Internal Error: failed to allocate memory for RAM_SYMBOLS[%d] at 'translate_instructions_into_binary'.\n", i);
+            return -1;
+        }
+
+        sprintf(RAM_SYMBOLS[i], "%c%lu", RAM_START_SYMBOL, i);
+
+        add_entry_to_array_list(symbol_table, RAM_SYMBOLS[i], strlen(RAM_SYMBOLS[i]),
+                                &i, 1);
+    }
+
     const int ADDRESS_POINTER_LENGTH = 1;
 
     for (size_t i = 0; i < commands_buffer->length; i++) {
@@ -36,6 +110,7 @@ int sync_symbol_addresses(t_array_list* commands_buffer) {
 
         if (instruction == NULL) {
             dispose_array_list(symbol_table);
+            free(RAM_SYMBOLS);
             printf("Internal Error: 'commands_buffer' contains invalid data at 'sync_symbol_addresses'.\n");
             return -1;
         }
@@ -43,12 +118,14 @@ int sync_symbol_addresses(t_array_list* commands_buffer) {
         if (instruction->type == L_COMMAND) {
             if (instruction->symbol == NULL) {
                 dispose_array_list(symbol_table);
+                free(RAM_SYMBOLS);
                 printf("Internal Error: 'commands_buffer' contains invalid data at 'sync_symbol_addresses'.\n");
                 return -1;
             }
 
             if (contains_str_key_array_list(symbol_table, instruction->symbol, instruction->symbol_length) > 0) {
                 dispose_array_list(symbol_table);
+                free(RAM_SYMBOLS);
                 printf("Error: detected a repeated symbol definition of label '%s'.\n", instruction->symbol);
                 return -1;
             }
@@ -63,6 +140,7 @@ int sync_symbol_addresses(t_array_list* commands_buffer) {
 
         if (instruction == NULL) {
             dispose_array_list(symbol_table);
+            free(RAM_SYMBOLS);
             printf("Internal Error: 'commands_buffer' contains invalid data at 'sync_symbol_addresses'.\n");
             return -1;
         }
@@ -70,6 +148,7 @@ int sync_symbol_addresses(t_array_list* commands_buffer) {
         if (instruction->type == A_COMMAND) {
             if (instruction->symbol == NULL) {
                 dispose_array_list(symbol_table);
+                free(RAM_SYMBOLS);
                 printf("Internal Error: 'commands_buffer' contains invalid data at 'sync_symbol_addresses'.\n");
                 return -1;
             }
@@ -86,16 +165,20 @@ int sync_symbol_addresses(t_array_list* commands_buffer) {
 
                     if (label_address == NULL) {
                         dispose_array_list(symbol_table);
+                        free(RAM_SYMBOLS);
                         printf("Internal Error: failed to retrieve a label's address at 'sync_symbol_addresses'.\n");
                         return -1;
                     }
 
                     instruction->address = *(label_address);
+                    printf("");
+                    int x = 100;
                 }
             }
         }
     }
 
     dispose_array_list(symbol_table);
+    free(RAM_SYMBOLS);
     return 1;
 }

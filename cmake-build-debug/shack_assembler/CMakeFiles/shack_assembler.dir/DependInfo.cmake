@@ -5,6 +5,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
   "/home/gabriel/source/shack_assembler/shack_assembler/src/assembler.c" "/home/gabriel/source/shack_assembler/cmake-build-debug/shack_assembler/CMakeFiles/shack_assembler.dir/src/assembler.c.o"
+  "/home/gabriel/source/shack_assembler/shack_assembler/src/command_transformer.c" "/home/gabriel/source/shack_assembler/cmake-build-debug/shack_assembler/CMakeFiles/shack_assembler.dir/src/command_transformer.c.o"
   "/home/gabriel/source/shack_assembler/shack_assembler/src/general_types.c" "/home/gabriel/source/shack_assembler/cmake-build-debug/shack_assembler/CMakeFiles/shack_assembler.dir/src/general_types.c.o"
   "/home/gabriel/source/shack_assembler/shack_assembler/src/instruction.c" "/home/gabriel/source/shack_assembler/cmake-build-debug/shack_assembler/CMakeFiles/shack_assembler.dir/src/instruction.c.o"
   "/home/gabriel/source/shack_assembler/shack_assembler/src/main.c" "/home/gabriel/source/shack_assembler/cmake-build-debug/shack_assembler/CMakeFiles/shack_assembler.dir/src/main.c.o"
