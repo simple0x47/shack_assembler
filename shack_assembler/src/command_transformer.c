@@ -244,6 +244,7 @@ size_t get_number_from_string(const char* string) {
     size_t number = 0;
     size_t string_size = strlen(string);
     for (size_t i = 0; i < string_size; i++) {
+
         number += ((string[i] - '0') * power(10, string_size - i));
     }
 
@@ -254,7 +255,7 @@ size_t power(size_t base, size_t power) {
     size_t result = 1;
 
     for (size_t i = 0; i < power; i++) {
-        result *= base;
+        result *= (i == 0) ? 1 : base;
     }
 
     return result;
